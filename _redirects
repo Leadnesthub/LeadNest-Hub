@@ -1,0 +1,9 @@
+# Redirect root to solar page
+/    /solar/    301
+
+# Redirect any old paths to appropriate pages
+/solar    /solar/    301
+/roofing    /roofing/    301
+
+# Handle 404s by redirecting to solar
+/*    /solar/    404

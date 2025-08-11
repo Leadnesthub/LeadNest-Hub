@@ -1,0 +1,25 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/solar/"
+  status = 301
+
+[[redirects]]
+  from = "/solar"
+  to = "/solar/"
+  status = 301
+  
+[[redirects]]
+  from = "/roofing"
+  to = "/roofing/"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/solar/"
+  status = 404
+
+[build.environment]
+  NODE_VERSION = "18"

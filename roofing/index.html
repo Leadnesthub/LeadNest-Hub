@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raleigh Solar Installation - Save $2,847+ Per Year | LeadNest Hub.</title>
-    <meta name="description" content="Get free solar quotes from top-rated installers in Raleigh... Join 2,847+ neighbors saving thousands with solar. 30% tax credit expires Dec 31, 2025.">
+    <title>Raleigh Roofing Services - Professional Installation & Repair | LeadNest Hub</title>
+    <meta name="description" content="Get free roofing quotes from top-rated contractors in Raleigh. Professional installation, repair, and replacement services. Insurance claims assistance available.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Urgency Banner -->
     <div class="urgency-banner">
-        ⚡ LIMITED TIME: 30% Federal Tax Credit Expires Dec 31, 2025 • 47 roofing slots left this month
+        🏠 LIMITED TIME: Insurance Claims Assistance Available • 23 roofing projects available this month
         <span style="margin-left: 24px;">
             Interested in <strong>Solar Savings?</strong>
-            <a href="../index.html" style="color: #19BFC2; text-decoration: underline; font-weight: 600;">See Solar Options</a>
+            <a href="../solar/index.html" style="color: #19BFC2; text-decoration: underline; font-weight: 600;">See Solar Options</a>
         </span>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-background">
-            <video autoplay muted loop playsinline poster="hero-background.jpg" class="hero-bg-video">
+            <video autoplay muted loop playsinline poster="hero-background.jpg" class="hero-bg-video" preload="metadata">
                 <source src="WhatsApp Video 2025-08-08 at 15.28.31_a9670f05.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -36,32 +36,32 @@
                             </div>
                         </div>
                         <div class="badge">
-                            👑 Raleigh's #1 Solar Lead Generation Service
+                            🏠 Raleigh's #1 Roofing Lead Generation Service
                         </div>
                     </div>
                     
                     <h1 class="hero-main-heading">
                         Raleigh Homeowners:<br>
-                        <span class="highlight">See How Much You'll Save</span><br>
-                        With Roofing in 2025...
+                        <span class="highlight">Get Professional Roofing</span><br>
+                        Services in 2025...
                     </h1>
                     
                     <p class="hero-subtitle">
-                        Join <strong>2,847+ neighbors</strong> who've eliminated their electric bills and are saving thousands every year
+                        Join <strong>1,200+ neighbors</strong> who've protected their homes with quality roofing and increased their property value
                     </p>
                     
                     <div class="benefits">
                         <div class="benefit">
-                            <span class="icon">💰</span>
-                            <span>Average savings: <strong>$2,847/year</strong></span>
+                            <span class="icon">�️</span>
+                            <span>Storm damage protection: <strong>Insurance assistance</strong></span>
                         </div>
                         <div class="benefit">
                             <span class="icon">🏠</span>
-                            <span>Increase home value by <strong>$15,000+</strong></span>
+                            <span>Increase home value by <strong>$12,000+</strong></span>
                         </div>
                         <div class="benefit">
                             <span class="icon">⚡</span>
-                            <span>Lock in energy costs for <strong>25+ years</strong></span>
+                            <span>Warranty protection for <strong>25+ years</strong></span>
                         </div>
                     </div>
                 </div>
@@ -78,75 +78,97 @@
                             </div>
                         </div>
                         
-                        <form id="solarForm" class="solar-form">
-                            <div class="user-type">
-                                <button type="button" class="user-btn active" data-type="homeowner">I'm a Homeowner</button>
-                                <button type="button" class="user-btn" data-type="installer">I'm a Solar Installer</button>
+                        <form id="solarForm" class="solar-form" novalidate>
+                            <div class="user-type" role="radiogroup" aria-labelledby="user-type-label">
+                                <span id="user-type-label" class="sr-only">Select user type</span>
+                                <button type="button" class="user-btn active" data-type="homeowner" aria-pressed="true">I'm a Homeowner</button>
+                                <button type="button" class="user-btn" data-type="contractor" aria-pressed="false">I'm a Roofing Contractor</button>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="firstName" name="first_name" placeholder="First Name" required>
+                                    <label for="firstName" class="sr-only">First Name</label>
+                                    <input type="text" id="firstName" name="first_name" placeholder="First Name" required aria-describedby="firstName-error">
+                                    <span id="firstName-error" class="error-message" role="alert"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="lastName" name="last_name" placeholder="Last Name" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                                    <label for="lastName" class="sr-only">Last Name</label>
+                                    <input type="text" id="lastName" name="last_name" placeholder="Last Name" required aria-describedby="lastName-error">
+                                    <span id="lastName-error" class="error-message" role="alert"></span>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="zipCode" name="zip_code" placeholder="ZIP Code" required>
+                                    <label for="phone" class="sr-only">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="[0-9\-\(\)\s\+]+" aria-describedby="phone-error">
+                                    <span id="phone-error" class="error-message" role="alert"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Email Address" required aria-describedby="email-error">
+                                    <span id="email-error" class="error-message" role="alert"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zipCode" class="sr-only">ZIP Code</label>
+                                    <input type="text" id="zipCode" name="zip_code" placeholder="ZIP Code" required pattern="[0-9]{5}(-[0-9]{4})?" aria-describedby="zipCode-error">
+                                    <span id="zipCode-error" class="error-message" role="alert"></span>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <select id="electricBill" name="electric_bill" required>
-                                    <option value="">Select your monthly electric bill range</option>
-                                    <option value="50-100">$50 - $100</option>
-                                    <option value="100-150">$100 - $150</option>
-                                    <option value="150-200">$150 - $200</option>
-                                    <option value="200-300">$200 - $300</option>
-                                    <option value="300+">$300+</option>
+                                <label for="roofingService" class="sr-only">Service Needed</label>
+                                <select id="roofingService" name="roofing_service" required aria-describedby="roofingService-error">
+                                    <option value="">Select service needed</option>
+                                    <option value="new-installation">New Roof Installation</option>
+                                    <option value="repair">Roof Repair</option>
+                                    <option value="replacement">Roof Replacement</option>
+                                    <option value="inspection">Roof Inspection</option>
+                                    <option value="maintenance">Roof Maintenance</option>
+                                    <option value="storm-damage">Storm Damage Assessment</option>
                                 </select>
+                                <span id="roofingService-error" class="error-message" role="alert"></span>
                             </div>
                             
                             <div class="form-group">
-                                <select id="homeType" name="home_type" required>
+                                <label for="homeType" class="sr-only">Home Type</label>
+                                <select id="homeType" name="home_type" required aria-describedby="homeType-error">
                                     <option value="">Select your home type</option>
                                     <option value="single-family">Single Family Home</option>
                                     <option value="townhouse">Townhouse</option>
                                     <option value="condo">Condo/Apartment</option>
                                     <option value="mobile">Mobile Home</option>
                                 </select>
+                                <span id="homeType-error" class="error-message" role="alert"></span>
                             </div>
                             
                             <div class="form-group">
-                                <select id="roofCondition" name="roof_condition" required>
-                                    <option value="">Select roof condition</option>
-                                    <option value="excellent">Excellent (New or recently replaced)</option>
+                                <label for="roofCondition" class="sr-only">Roof Condition</label>
+                                <select id="roofCondition" name="roof_condition" required aria-describedby="roofCondition-error">
+                                    <option value="">Select current roof condition</option>
+                                    <option value="excellent">Excellent (Less than 5 years old)</option>
                                     <option value="good">Good (5-10 years old)</option>
                                     <option value="fair">Fair (10-20 years old)</option>
-                                    <option value="needs-repair">Needs repair or replacement</option>
+                                    <option value="poor">Poor (20+ years old)</option>
+                                    <option value="damaged">Damaged (Storm/leak damage)</option>
+                                    <option value="needs-replacement">Needs immediate replacement</option>
                                 </select>
+                                <span id="roofCondition-error" class="error-message" role="alert"></span>
                             </div>
                             
-                            <button type="submit" class="submit-btn">
-                                GET MY FREE ROOFING QUOTE
+                            <button type="submit" class="submit-btn" aria-describedby="submit-status">
+                                <span class="btn-text">GET MY FREE ROOFING QUOTE</span>
+                                <span class="btn-loader" aria-hidden="true"></span>
                             </button>
+                            <div id="submit-status" class="sr-only" role="status" aria-live="polite"></div>
                             
                             <div class="form-guarantees">
                                 <span>✓ No obligation</span>
                                 <span>✓ Free inspection</span>
-                                <span>✓ Local contractors only</span>
+                                <span>✓ Licensed contractors only</span>
                             </div>
                         </form>
                     </div>

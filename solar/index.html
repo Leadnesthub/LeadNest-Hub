@@ -21,7 +21,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-background">
-            <video autoplay muted loop playsinline poster="hero-background.jpg" class="hero-bg-video">
+            <video autoplay muted loop playsinline poster="hero-background.jpg" class="hero-bg-video" preload="metadata">
                 <source src="WhatsApp Video 2025-08-08 at 11.37.47_07a24ed1.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -78,38 +78,50 @@
                             </div>
                         </div>
                         
-                        <form id="solarForm" class="solar-form">
-                            <div class="user-type">
-                                <button type="button" class="user-btn active" data-type="homeowner">I'm a Homeowner</button>
-                                <button type="button" class="user-btn" data-type="installer">I'm a Solar Installer</button>
+                        <form id="solarForm" class="solar-form" novalidate>
+                            <div class="user-type" role="radiogroup" aria-labelledby="user-type-label">
+                                <span id="user-type-label" class="sr-only">Select user type</span>
+                                <button type="button" class="user-btn active" data-type="homeowner" aria-pressed="true">I'm a Homeowner</button>
+                                <button type="button" class="user-btn" data-type="installer" aria-pressed="false">I'm a Solar Installer</button>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="firstName" name="first_name" placeholder="First Name" required>
+                                    <label for="firstName" class="sr-only">First Name</label>
+                                    <input type="text" id="firstName" name="first_name" placeholder="First Name" required aria-describedby="firstName-error">
+                                    <span id="firstName-error" class="error-message" role="alert"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="lastName" name="last_name" placeholder="Last Name" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                                    <label for="lastName" class="sr-only">Last Name</label>
+                                    <input type="text" id="lastName" name="last_name" placeholder="Last Name" required aria-describedby="lastName-error">
+                                    <span id="lastName-error" class="error-message" role="alert"></span>
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="zipCode" name="zip_code" placeholder="ZIP Code" required>
+                                    <label for="phone" class="sr-only">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="[0-9\-\(\)\s\+]+" aria-describedby="phone-error">
+                                    <span id="phone-error" class="error-message" role="alert"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Email Address" required aria-describedby="email-error">
+                                    <span id="email-error" class="error-message" role="alert"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zipCode" class="sr-only">ZIP Code</label>
+                                    <input type="text" id="zipCode" name="zip_code" placeholder="ZIP Code" required pattern="[0-9]{5}(-[0-9]{4})?" aria-describedby="zipCode-error">
+                                    <span id="zipCode-error" class="error-message" role="alert"></span>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <select id="electricBill" name="electric_bill" required>
+                                <label for="electricBill" class="sr-only">Monthly Electric Bill Range</label>
+                                <select id="electricBill" name="electric_bill" required aria-describedby="electricBill-error">
                                     <option value="">Select your monthly electric bill range</option>
                                     <option value="50-100">$50 - $100</option>
                                     <option value="100-150">$100 - $150</option>
@@ -117,31 +129,38 @@
                                     <option value="200-300">$200 - $300</option>
                                     <option value="300+">$300+</option>
                                 </select>
+                                <span id="electricBill-error" class="error-message" role="alert"></span>
                             </div>
                             
                             <div class="form-group">
-                                <select id="homeType" name="home_type" required>
+                                <label for="homeType" class="sr-only">Home Type</label>
+                                <select id="homeType" name="home_type" required aria-describedby="homeType-error">
                                     <option value="">Select your home type</option>
                                     <option value="single-family">Single Family Home</option>
                                     <option value="townhouse">Townhouse</option>
                                     <option value="condo">Condo/Apartment</option>
                                     <option value="mobile">Mobile Home</option>
                                 </select>
+                                <span id="homeType-error" class="error-message" role="alert"></span>
                             </div>
                             
                             <div class="form-group">
-                                <select id="roofCondition" name="roof_condition" required>
+                                <label for="roofCondition" class="sr-only">Roof Condition</label>
+                                <select id="roofCondition" name="roof_condition" required aria-describedby="roofCondition-error">
                                     <option value="">Select roof condition</option>
                                     <option value="excellent">Excellent (New or recently replaced)</option>
                                     <option value="good">Good (5-10 years old)</option>
                                     <option value="fair">Fair (10-20 years old)</option>
                                     <option value="needs-repair">Needs repair or replacement</option>
                                 </select>
+                                <span id="roofCondition-error" class="error-message" role="alert"></span>
                             </div>
                             
-                            <button type="submit" class="submit-btn">
-                                GET MY FREE SOLAR QUOTE
+                            <button type="submit" class="submit-btn" aria-describedby="submit-status">
+                                <span class="btn-text">GET MY FREE SOLAR QUOTE</span>
+                                <span class="btn-loader" aria-hidden="true"></span>
                             </button>
+                            <div id="submit-status" class="sr-only" role="status" aria-live="polite"></div>
                             
                             <div class="form-guarantees">
                                 <span>✓ No obligation</span>

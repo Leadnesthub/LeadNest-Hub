@@ -1,18 +1,102 @@
-// User type toggle functionality
+// Enhanced user type toggle functionality with accessibility
 document.addEventListener('DOMContentLoaded', function() {
     const userButtons = document.querySelectorAll('.user-btn');
     
     userButtons.forEach(button => {
         button.addEventListener('click', function() {
-            userButtons.forEach(btn => btn.classList.remove('active'));
+            userButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
             this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
         });
     });
     
-    // Form submission
+    // Enhanced form validation and submission
     const form = document.getElementById('solarForm');
+    const submitBtn = form.querySelector('.submit-btn');
+    const submitStatus = document.getElementById('submit-status');
+    
+    // Real-time validation
+    const inputs = form.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearError);
+    });
+    
+    function validateField(e) {
+        const field = e.target;
+        const errorElement = document.getElementById(field.id + '-error');
+        let isValid = true;
+        let errorMessage = '';
+        
+        if (field.hasAttribute('required') && !field.value.trim()) {
+            isValid = false;
+            errorMessage = 'This field is required';
+        } else if (field.type === 'email' && field.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(field.value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+        } else if (field.type === 'tel' && field.value) {
+            const phoneRegex = /^[\d\-\(\)\s\+]{10,}$/;
+            if (!phoneRegex.test(field.value.replace(/\D/g, ''))) {
+                isValid = false;
+                errorMessage = 'Please enter a valid phone number';
+            }
+        } else if (field.id === 'zipCode' && field.value) {
+            const zipRegex = /^\d{5}(-\d{4})?$/;
+            if (!zipRegex.test(field.value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid ZIP code';
+            }
+        }
+        
+        if (errorElement) {
+            errorElement.textContent = errorMessage;
+            errorElement.classList.toggle('show', !isValid);
+        }
+        
+        field.classList.toggle('error', !isValid);
+        return isValid;
+    }
+    
+    function clearError(e) {
+        const field = e.target;
+        const errorElement = document.getElementById(field.id + '-error');
+        if (errorElement) {
+            errorElement.classList.remove('show');
+            field.classList.remove('error');
+        }
+    }
+    
+    // Form submission with enhanced UX
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        // Validate all fields
+        let isFormValid = true;
+        inputs.forEach(input => {
+            if (!validateField({ target: input })) {
+                isFormValid = false;
+            }
+        });
+        
+        if (!isFormValid) {
+            const firstError = form.querySelector('.error');
+            if (firstError) {
+                firstError.focus();
+                submitStatus.textContent = 'Please correct the errors above';
+            }
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        submitStatus.textContent = 'Submitting your request...';
         
         // Get form data
         const formData = new FormData(form);
@@ -21,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add user type
         const activeUserType = document.querySelector('.user-btn.active').dataset.type;
         data.user_type = activeUserType;
+        data.timestamp = new Date().toISOString();
+        data.page_source = 'roofing';
         
         // Submit to Formspree (replace with your endpoint)
         fetch('https://formspree.io/f/xovlraeb', {
@@ -32,15 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                // Show success message
                 showSuccessMessage();
+                submitStatus.textContent = 'Thank you! Your request has been submitted successfully.';
             } else {
                 throw new Error('Form submission failed');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('There was an error submitting your form. Please try again.');
+            submitStatus.textContent = 'There was an error submitting your form. Please try again.';
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
         });
     });
 });
