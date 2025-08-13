@@ -213,7 +213,7 @@ select:focus-visible {
 .logo img {
     height: 80px;
     width: auto;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(2px 2px 4px rgba(255, 255, 255, 0.5));
 }
 
 .hero h1 {
